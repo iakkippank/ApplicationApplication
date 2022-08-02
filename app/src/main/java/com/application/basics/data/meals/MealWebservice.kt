@@ -24,7 +24,7 @@ class MealWebservice @Inject() constructor() {
     @OptIn(ExperimentalSerializationApi::class)
     suspend fun getMeals(): MealResponse {
 
-        // That's the string that is collected from the Api actually KTOR Client would do that
+        // Json-String that is collected from the Api. See KTOR Client
         val jsonApiResponse = json.encodeToString(
             MealResponse(
                 200,
@@ -34,6 +34,7 @@ class MealWebservice @Inject() constructor() {
                     .toList()
             )
         )
+
         Log.i("MealWebservice","Webservice Response : $jsonApiResponse")
 
 //      Network delay
