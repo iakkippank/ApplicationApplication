@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MealRepository @Inject constructor(
-    val mealDao : MealDao,
-    val mealWebservice: MealWebservice
+    private val mealDao : MealDao,
+    private val mealWebservice: MealWebservice
 ) {
 
     // Actually the DAO from below

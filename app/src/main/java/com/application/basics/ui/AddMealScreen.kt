@@ -46,14 +46,16 @@ fun AddMealScreen(
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly
+        verticalArrangement = Arrangement.Center
     ) {
         Text(text = if(mealId == 0){
             stringResource(id = R.string.newmeal)
         }else{
             stringResource(id = R.string.meal) + " #${meal?.id ?: ""}"
-        }
+        },
+            style = MaterialTheme.typography.headlineSmall
         )
+        Spacer(modifier = Modifier.size(20.dp))
         OutlinedTextField(
             value = meal?.name ?: "",
             label = { Text(text = stringResource(id = R.string.name)) },
@@ -61,6 +63,8 @@ fun AddMealScreen(
                 addMealViewModel.changeName(it)
             }
         )
+        Spacer(modifier = Modifier.size(10.dp))
+
         OutlinedTextField(
             value = meal?.description ?: "",
             label = { Text(text = stringResource(id = R.string.description)) },
