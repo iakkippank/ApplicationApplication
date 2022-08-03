@@ -5,9 +5,7 @@ import com.application.basics.data.meals.MealRepository
 import com.application.basics.data.meals.model.Meal
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 class AddMealViewModel @AssistedInject constructor(

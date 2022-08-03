@@ -1,6 +1,5 @@
 package com.application.basics.data.meals
 
-import android.os.FileObserver.DELETE
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy

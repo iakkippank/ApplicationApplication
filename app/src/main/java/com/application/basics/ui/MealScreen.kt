@@ -47,8 +47,7 @@ fun MealScreen(
             CircularProgressIndicator()
         }
     } else {
-        LazyColumn(
-        ) {
+        LazyColumn{
             items(meals) { meal ->
                 MealItem(meal) {
                     navigateToAddMealScreen(meal.id)

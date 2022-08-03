@@ -3,7 +3,6 @@ package com.application.basics.ui
 import android.app.Activity
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Save
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -17,10 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.application.basics.R
 import com.application.basics.ViewModelFactoryProvider
-import com.application.basics.data.meals.model.Meal
 import com.application.basics.viewmodels.AddMealViewModel
 import dagger.hilt.android.EntryPointAccessors
-import org.intellij.lang.annotations.JdkConstants
 
 /**
  * Extension of function *[viewModel()](https://developer.android.com/jetpack/compose/libraries#viewmodel)* to create the viewModel with id.
@@ -37,7 +34,7 @@ fun getAddMealViewModel(mealId: Int): AddMealViewModel {
 
 
 /**
- * Main Composable to add or edit a Meal. It will edit the meal with id [mealID].
+ * Main Composable to add or edit a Meal. It will edit the meal with id [mealId].
  * The [navigate] function will be called after the Meal is saved.
  *
  * @param mealId
@@ -59,7 +56,7 @@ fun AddMealScreen(
         verticalArrangement = Arrangement.Center
     ) {
         Text(text = if(mealId == 0){
-            stringResource(id = R.string.newmeal)
+            stringResource(id = R.string.newMeal)
         }else{
             stringResource(id = R.string.meal) + " #${meal?.id ?: ""}"
         },

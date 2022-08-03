@@ -13,10 +13,12 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
-class MealWebservice @Inject() constructor() {
+class MealWebservice @Inject constructor() {
 
     companion object {
-        const val MEAL_ENDPOINT = "host/essen"
+        // Possible place to store the ENDPOINT
+        @Suppress("unused")
+        const val MEAL_ENDPOINT = "/essen"
     }
 
     private val json = Json { prettyPrint = true }

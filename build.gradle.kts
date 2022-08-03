@@ -1,9 +1,9 @@
 buildscript {
 
-    val kotlin_version by extra{ "1.6.21" } // from 1.5.31
-    val dokka_version by extra{ "1.6.21" } // from 1.5.31
-    val compose_version by extra { "1.2.0-beta03" }
-    val hilt_version by extra { "2.42" }
+    val kotlinVersion by extra{ "1.6.21" } // from 1.5.31
+    val dokkaVersion by extra{ "1.6.21" } // from 1.5.31
+    val composeVersion by extra { "1.2.0-beta03" }
+    val hiltVersion by extra { "2.42" }
 
     repositories {
         google()
@@ -16,11 +16,11 @@ buildscript {
         // in the individual module build.gradle files
         classpath ("com.google.gms:google-services:4.3.13")
         classpath ("com.android.tools.build:gradle:7.1.3") //changed from 2 to 4
-        classpath ("org.jetbrains.kotlin:kotlin-serialization:$kotlin_version" )
-        classpath("org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}")
-        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" )
-        classpath ("com.google.dagger:hilt-android-gradle-plugin:$hilt_version" )
-        classpath ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
+        classpath ("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion" )
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:${dokkaVersion}")
+        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion" )
+        classpath ("com.google.dagger:hilt-android-gradle-plugin:$hiltVersion" )
+//        classpath ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
 
     }
 }
