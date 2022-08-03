@@ -1,6 +1,5 @@
 package com.application.basics.ui
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -18,7 +17,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,13 +25,20 @@ import com.application.basics.R
 import com.application.basics.data.meals.model.Meal
 import com.application.basics.viewmodels.MealViewModel
 
+/**
+ * Main Composable for the App.
+ * Display a List of Meals
+ */
 @Composable
 fun MealScreen(
     mealViewModel: MealViewModel = hiltViewModel(),
-    navigateToNextScreen: () -> Unit
+    navigateToAddMealScreen: (Int) -> Unit
 ) {
+
+    // Contains the displayed meal list
     val meals by mealViewModel.meals.observeAsState(emptyList())
-    val context = LocalContext.current
+
+    // Shows a Progressbar if the list is not loaded from the Webservice
     if (meals.isEmpty()) {
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -42,11 +47,11 @@ fun MealScreen(
             CircularProgressIndicator()
         }
     } else {
-        LazyColumn() {
+        LazyColumn(
+        ) {
             items(meals) { meal ->
                 MealItem(meal) {
-//                  Best to directly call a method of the viewModel
-                    Toast.makeText(context, meal.name, Toast.LENGTH_SHORT).show()
+                    navigateToAddMealScreen(meal.id)
                 }
             }
         }
@@ -58,7 +63,7 @@ fun MealScreen(
             // Navigates to the next Screen (In this case toggles the screens)
             FloatingActionButton(
                 modifier = Modifier.padding(40.dp),
-                onClick = navigateToNextScreen
+                onClick = { navigateToAddMealScreen(0) }
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Add,
@@ -69,13 +74,18 @@ fun MealScreen(
     }
 }
 
+/**
+ * Meal item for a list of Meals ([meal]). The [onClick] method can be used for tab gestures.
+ */
+
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
 @Preview(showBackground = true)
 fun MealItem(meal: Meal = Meal(1, "Name", "Description"), onClick: () -> Unit = {}) {
 
     ElevatedCard(
-        modifier = Modifier.padding(20.dp),
+        modifier = Modifier
+            .padding(horizontal = 20.dp, vertical = 10.dp),
         onClick = {
             onClick()
         }

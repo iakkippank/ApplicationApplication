@@ -6,7 +6,7 @@ plugins {
     id("kotlinx-serialization")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
-//    id("org.jetbrains.dokka")
+    id("org.jetbrains.dokka")
 //    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
@@ -171,7 +171,11 @@ kapt {
     correctErrorTypes = true
 }
 
-/*
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.freeCompilerArgs += "-opt-in=org.mylibrary.OptInAnnotation"
+}
+
+// Creates the KDOC documentation in HTML
 tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml").configure {
     // outputDirectory.set(buildDir.resolve("dokka"))
     suppressInheritedMembers.set(true)
@@ -185,7 +189,7 @@ tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml").configure {
     }
 }
 
-
+// Creates the KDOC documentation in Markdown
 tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaGfm").configure {
     // outputDirectory.set(buildDir.resolve("dokka"))
     suppressInheritedMembers.set(true)
@@ -197,4 +201,4 @@ tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaGfm").configure {
             skipEmptyPackages.set(true)
         }
     }
-}*/
+}

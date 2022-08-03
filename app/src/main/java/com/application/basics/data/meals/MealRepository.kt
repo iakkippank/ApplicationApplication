@@ -10,31 +10,27 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MealRepository @Inject constructor(
-//    mealDao : MealDao
+    val mealDao : MealDao,
     val mealWebservice: MealWebservice
 ) {
 
     // Actually the DAO from below
-    private val allMeals: Flow<List<Meal>> = flow {
-        emit(mealWebservice.getMeals().meals)
-    }
-
-    fun getMealsSorted(): Flow<List<Meal>> = allMeals.map { list ->
-        list.sortedBy { it.id }
-    }
-
+    val allMeals: Flow<List<Meal>> = mealDao.getAll()
 
     suspend fun updateMeals() = mealWebservice.getMeals().also {
-        // Write to Room Database
-        // mealDao.inject(this.meals)
+        // Populate Meals from webservice
+        mealDao.insertMeals(it.meals)
     }
-}
 
-@Dao
-interface MealDao {
+    suspend fun addMeal(meal : Meal) = mealDao.insertMeals(listOf(meal))
 
-    //    @Query("SELECT * FROM mealTable")
-    suspend fun getAll(): Flow<List<Meal>>
+    /**
+     * @return the meal with [mealId] from the database
+     */
+    suspend fun getMealById(mealId: Int) : Meal = mealDao.getMealByID(mealId) ?: Meal(0,"","")
 
-    // Additional Database functions
+    suspend fun deleteMeal(mealId: Int) {
+        mealDao.deleteMeal(mealId)
+    }
+
 }

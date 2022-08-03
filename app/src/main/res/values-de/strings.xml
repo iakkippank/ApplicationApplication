@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Meine Anwendung</string>
     <string name="add">Hinzufügen</string>
+    <string name="name">Name</string>
+    <string name="description">Beschreibung</string>
+    <string name="meal">Meal</string>
+    <string name="newmeal">New Meal</string>
 </resources>
