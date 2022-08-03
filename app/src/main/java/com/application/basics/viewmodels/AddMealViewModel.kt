@@ -23,19 +23,25 @@ class AddMealViewModel @AssistedInject constructor(
             }
         }
 
+    /**
+     * Holds the currently selected Meal.
+     */
     val meal = _meal as LiveData<Meal>
 
     /**
-     * Changes the text in the text fields, an extra variable for the state is better.
+     * Changes the name of the meal in the text field, an extra variable for the state is better.
      */
     fun changeDescription(description: String) =
         _meal.postValue(meal.value!!.copy(description = description))
 
+    /**
+     * Changes the description of the meal in the text field, an extra variable for the state is better.
+     */
     fun changeName(name: String) =
         _meal.postValue(meal.value!!.copy(name = name))
 
     /**
-     * Adds or saves a Meal. If the name is empty it will try to delete it.
+     * Adds or changes a Meal. If the name is empty it will try to delete it.
      * Navigates to list screen after.
      */
     fun addMeal(
@@ -51,7 +57,6 @@ class AddMealViewModel @AssistedInject constructor(
             }else{
                 mealRepository.addMeal(it)
             }
-
         }
         // Navigate back to the List
         navigate()

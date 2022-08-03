@@ -26,8 +26,8 @@ import com.application.basics.data.meals.model.Meal
 import com.application.basics.viewmodels.MealViewModel
 
 /**
- * Main Composable for the App.
- * Display a List of Meals
+ * Main composable for the App.
+ * Displays a list of Meals.
  */
 @Composable
 fun MealScreen(
@@ -77,7 +77,6 @@ fun MealScreen(
 /**
  * Meal item for a list of Meals ([meal]). The [onClick] method can be used for tab gestures.
  */
-
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
 @Preview(showBackground = true)

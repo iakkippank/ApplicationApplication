@@ -22,6 +22,9 @@ import com.application.basics.viewmodels.AddMealViewModel
 import dagger.hilt.android.EntryPointAccessors
 import org.intellij.lang.annotations.JdkConstants
 
+/**
+ * Extension of function *[viewModel()](https://developer.android.com/jetpack/compose/libraries#viewmodel)* to create the viewModel with id.
+ */
 @Composable
 fun getAddMealViewModel(mealId: Int): AddMealViewModel {
     val factory = EntryPointAccessors.fromActivity(
@@ -33,6 +36,13 @@ fun getAddMealViewModel(mealId: Int): AddMealViewModel {
 }
 
 
+/**
+ * Main Composable to add or edit a Meal. It will edit the meal with id [mealID].
+ * The [navigate] function will be called after the Meal is saved.
+ *
+ * @param mealId
+ * @param navigate
+ */
 @Composable
 fun AddMealScreen(
     mealId : Int,

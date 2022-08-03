@@ -11,9 +11,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MealViewModel @Inject constructor(
-    val mealRepository: MealRepository
+    private val mealRepository: MealRepository
 ): ViewModel(){
 
+    /**
+     * A collection of meals reacting to the changes of the Database [[com.application.basics.data.RoomDatabase]].
+     */
     val meals : LiveData<List<Meal>> = mealRepository.allMeals
         .map { meals -> meals.sortedBy { it.id } }
         .onStart {
